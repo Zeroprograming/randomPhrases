@@ -41,6 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Cambiar el color del body al hacer clic en el botón "Nueva Frase"
   function changeBodyColor() {
+    const colors = ["#F95D3B", "#3BF9F6", "#A358FE"]; // Agrega los colores deseados
+  
     // Comprueba si la propiedad 'currentColorIndex' está definida en el body
     if (!body.currentColorIndex) {
       // Si no está definida, inicializa el índice en 0
@@ -49,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Incrementa el índice en 1 y asegúrate de que no exceda el rango de colores
       body.currentColorIndex = (body.currentColorIndex + 1) % colors.length;
     }
-
+  
     var nextColor = colors[body.currentColorIndex];
     body.style.backgroundColor = nextColor;
   }
