@@ -2,7 +2,23 @@ document.addEventListener("DOMContentLoaded", function () {
   const quoteText = document.getElementById("text");
   const quoteAuthor = document.getElementById("author");
   const newQuoteBtn = document.getElementById("new-quote");
+  const tweetQuoteBtn = document.getElementById("tweet-quote");
   const body = document.body;
+
+  var colors = [
+    "#16a085",
+    "#27ae60",
+    "#2c3e50",
+    "#f39c12",
+    "#e74c3c",
+    "#9b59b6",
+    "#FB6964",
+    "#342224",
+    "#472E32",
+    "#BDBB99",
+    "#77B1A9",
+    "#73A857",
+  ];
 
   // Obtener una frase aleatoria
   function getRandomQuote() {
@@ -33,35 +49,27 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Mostrar una nueva frase aleatoria
-  function showRandomQuote() {
+  async function getQuote() {
     const randomQuote = getRandomQuote();
+
     quoteText.textContent = randomQuote.text;
     quoteAuthor.textContent = randomQuote.author;
-  }
 
-  // Cambiar el color del body al hacer clic en el botón "Nueva Frase"
-  function changeBodyColor() {
-    const colors = ["#F95D3B", "#3BF9F6", "#A358FE"]; // Agrega los colores deseados
-  
-    // Comprueba si la propiedad 'currentColorIndex' está definida en el body
-    if (!body.currentColorIndex) {
-      // Si no está definida, inicializa el índice en 0
-      body.currentColorIndex = 0;
-    } else {
-      // Incrementa el índice en 1 y asegúrate de que no exceda el rango de colores
-      body.currentColorIndex = (body.currentColorIndex + 1) % colors.length;
-    }
-  
-    var nextColor = colors[body.currentColorIndex];
-    body.style.backgroundColor = nextColor;
-  }
+    var color = Math.floor(Math.random() * colors.length);
 
-  // Cargar una frase aleatoria al cargar la página
-  showRandomQuote();
+    body.style.backgroundColor = colors[color];
+    body.style.color = colors[color];
+
+
+    newQuoteBtn.style.backgroundColor = colors[color];
+    tweetQuoteBtn.style.backgroundColor = colors[color];
+  }
 
   // Evento clic del botón "Nueva Frase"
   newQuoteBtn.addEventListener("click", function () {
-    showRandomQuote();
-    changeBodyColor();
+    getQuote();
   });
+
+  // Cargar una frase aleatoria al cargar la página
+  getQuote();
 });
